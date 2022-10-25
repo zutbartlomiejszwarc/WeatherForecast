@@ -1,0 +1,20 @@
+App\Entity\Measurement:
+    properties:
+        temperature:
+                - Range:
+                    min: -273.15
+                    max: 100
+                    notInRangeMessage: Temperature must be between {{ min }} (absolute zero) and {{ max }} (almost impossible)
+                    groups: ['new', 'edit']
+        conditions:
+                - Length:
+                    max: 100
+                    groups: ['new', 'edit']
+        precipitation:
+                - NotBlank: 
+                    groups: ['new', 'edit']
+        date:
+                - Range:
+                    min: now
+                    max: +1000 days
+                    groups: ['new', 'edit']
