@@ -23,7 +23,7 @@ class MeasurementRepository extends ServiceEntityRepository
         parent::__construct($registry, Measurement::class);
     }
 
-    public function findByLocation(Location $location)
+    public function findByLocation($location)
     {
         $qb = $this->createQueryBuilder('m');
         $qb->where('m.location = :location')

@@ -3,8 +3,10 @@
 {% block title %}Measurement index{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_MEASUREMENT_INDEX') %}
     <h1>Measurement index</h1>
     <a href="{{ path('app_location_index') }}"> Locations </a>
+    {% endif %}
 
     <table class="table">
         <thead>
@@ -26,8 +28,12 @@
                 <td>{{ measurement.conditions }}</td>
                 <td>{{ measurement.precipitation }}</td>
                 <td>
+                    {% if is_granted('ROLE_MEASUREMENT_SHOW') %}
                     <a href="{{ path('app_measurement_show', {'id': measurement.id}) }}">show</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_MEASUREMENT_EDIT') %}
                     <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -37,6 +43,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {% if is_granted('ROLE_MEASUREMENT_NEW') %}
     <a href="{{ path('app_measurement_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

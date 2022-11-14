@@ -98,7 +98,11 @@ class Measurement
     }
     public function __toString(){
 
-        return $this->getLocation();
+        return $this->getLocation().' '.
+            $this->getDate()->format('Y-m-d').' '.
+            $this->getTemperature().' '.
+            $this->getConditions().' '.
+            $this->getPrecipitation();
 
     }
 }
